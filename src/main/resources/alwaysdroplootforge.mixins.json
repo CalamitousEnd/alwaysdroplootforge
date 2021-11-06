@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.calamitous_end.alwaysdroplootforge.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "refmap": "alwaysdroplootforge.refmap.json",
+  "mixins": ["LivingEntityMixin","KilledByPlayerLootConditionMixin"],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
