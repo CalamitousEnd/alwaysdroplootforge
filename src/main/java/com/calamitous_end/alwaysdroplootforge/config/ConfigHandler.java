@@ -19,7 +19,7 @@ public class ConfigHandler {
                     .define("alwaysDropXp", true);
             passiveXpModifier = builder
                     .comment("Controls the amount of XP dropped when mobs are not killed by a player. Only applies when alwaysDropXp is true. The value set is multiplied by the mob's natural XP drop value, and the result is rounded to the nearest integer.")
-                    .defineInRange("passiveXpModifier", 1.0, 0, 1.0);
+                    .defineInRange("passiveXpModifier", 0.5, 0, 1.0);
             lootDropMode = builder
                     .comment("Controls whether the killed_by_player loot condition always passes, regardless of whether the entity was killed by a player.(Accepted values are: 'VANILLA', 'VANILLA_INVERSE', 'ALWAYS_AS_PLAYER, and 'NEVER_AS_PLAYER')")
                     .define("lootDropMode", "ALWAYS_AS_PLAYER");
