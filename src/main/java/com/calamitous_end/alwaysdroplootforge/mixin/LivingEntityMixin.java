@@ -20,10 +20,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
                 method = "isAlwaysExperienceDropper",
                 cancellable = true
         )
-        private void alwaysDropXp(CallbackInfoReturnable<Boolean> cir) {
-            var enabled =
-                    ConfigHandler.GENERAL.alwaysDropXp.get();
-            if (enabled) {
+        private void alwaysDropXp(CallbackInfoReturnable<Boolean> cir)
+        {
+            if (ConfigHandler.GENERAL.passiveXpModifier.get() != 0.0) {
                 cir.setReturnValue(true);
             }
         }
