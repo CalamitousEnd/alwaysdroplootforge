@@ -1,6 +1,6 @@
 package com.calamitous_end.alwaysdroplootforge.mixin;
 
-import com.calamitous_end.alwaysdroplootforge.config.ConfigHandler;
+import com.calamitous_end.alwaysdroplootforge.Config;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +17,7 @@ public class KilledByPlayerLootConditionMixin {
           cancellable = true
   )
   private void lootDropMode(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
-    switch (ConfigHandler.GENERAL.lootDropMode.get()) {
+    switch (Config.LOOT_DROP_MODE.get()) {
       case "VANILLA":
         break;
       case "VANILLA_INVERSE":

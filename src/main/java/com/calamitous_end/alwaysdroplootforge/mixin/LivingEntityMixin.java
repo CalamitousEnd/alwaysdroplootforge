@@ -1,6 +1,6 @@
 package com.calamitous_end.alwaysdroplootforge.mixin;
 
-import com.calamitous_end.alwaysdroplootforge.config.ConfigHandler;
+import com.calamitous_end.alwaysdroplootforge.Config;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -9,24 +9,22 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-    @Mixin(LivingEntity.class)
+@Mixin(LivingEntity.class)
     public class LivingEntityMixin {
 
-        @Shadow
-        protected int lastHurtByPlayerTime;
+    @Shadow
+    protected int lastHurtByPlayerTime;
 
-        @Inject(
-                at = @At("RETURN"),
-                method = "isAlwaysExperienceDropper",
-                cancellable = true
-        )
-        private void alwaysDropXp(CallbackInfoReturnable<Boolean> cir)
-        {
-            if (ConfigHandler.GENERAL.passiveXpModifier.get() != 0.0) {
-                cir.setReturnValue(true);
-            }
+    @Inject(
+            at = @At("RETURN"),
+            method = "isAlwaysExperienceDropper",
+            cancellable = true
+    )
+        private void alwaysdropXp(CallbackInfoReturnable<Boolean> cir) {
+                if (Config.PASSIVE_XP_MULT.get() != 0.0) {
+                    cir.setReturnValue(true);
+                }
         }
-
         @ModifyArg(
                 at = @At(
                         value = "INVOKE",
@@ -38,11 +36,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
         private int adjustXpAmount(int originalXpAmount) {
             if (this.lastHurtByPlayerTime <= 0) {
                 var modifier =
-                        ConfigHandler.GENERAL.passiveXpModifier.get();
+                        Config.PASSIVE_XP_MULT.get();
 
                 return (int) Math.round(originalXpAmount * modifier);
             } else {
                 return originalXpAmount;
             }
+
         }
     }
+
+//TODO: Implement checks for valid LivingEntities in Config.MONSTER_LIST

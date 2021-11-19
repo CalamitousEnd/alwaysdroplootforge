@@ -1,34 +1,22 @@
 package com.calamitous_end.alwaysdroplootforge;
 
-import com.calamitous_end.alwaysdroplootforge.config.ConfigHandler;
-
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+//Code Cleanup
 
 @Mod(AlwaysDropLoot.MOD_ID)
 public class AlwaysDropLoot {
     public static final String MOD_ID = "alwaysdroplootforge";
-    private static final Logger LOGGER = LogManager.getLogger();
-    public static AlwaysDropLoot instance;
 
     public AlwaysDropLoot() {
-        instance = this;
 
-        ModLoadingContext modLoadingContext = ModLoadingContext.get();
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC, "alwaysdroploot-common.toml");
 
-        modEventBus.addListener(this::loadComplete);
-        modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
+        MinecraftForge.EVENT_BUS.register(this);
 
     }
 
-    private void loadComplete(final FMLLoadCompleteEvent event) {
-        LOGGER.info("LOAD COMPLETE");
-    }
 }

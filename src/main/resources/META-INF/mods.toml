@@ -3,7 +3,8 @@ loaderVersion="[37,)"
 license="Apache 2.0"
 [[mods]] #mandatory
 modId="alwaysdroplootforge" #mandatory
-version="0.2.0-RELEASE"
+version="0.2.3-RELEASE"
+issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/always-drop-loot-forge/issues"
 displayName="Always Drop Loot[Forge]" #mandatory
 credits="Thanks to sargunv for the original code making this port possible!"
 authors="Calamitous_End, sargunv" #optional
