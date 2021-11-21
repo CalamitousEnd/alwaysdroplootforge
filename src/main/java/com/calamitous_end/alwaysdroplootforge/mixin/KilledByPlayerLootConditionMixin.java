@@ -18,15 +18,15 @@ public class KilledByPlayerLootConditionMixin {
   )
   private void lootDropMode(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
     switch (Config.LOOT_DROP_MODE.get()) {
-      case "VANILLA":
+      case VANILLA:
         break;
-      case "VANILLA_INVERSE":
+      case VANILLA_INVERSE:
         cir.setReturnValue(!cir.getReturnValue());
         break;
-      case "ALWAYS_AS_PLAYER":
+      case ALWAYS_AS_PLAYER:
         cir.setReturnValue(true);
         break;
-      case "NEVER_AS_PLAYER":
+      case NEVER_AS_PLAYER:
         cir.setReturnValue(false);
         break;
     }
